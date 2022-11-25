@@ -10,6 +10,7 @@ include(CPack)
 # Include sub-projects.
 add_subdirectory ("DesignPatterns")
 
+
 # For building:
 # 1) Generate cmake config files for build and install: cmake [config dir]
 
