@@ -1,7 +1,0 @@
-# ninja log v5
-911	950	6910354307396709	DesignPatterns/Basic/DesignPatterns_Basic.lib	d678340e89a5bbff
-1	915	6910354307016628	DesignPatterns/CMakeFiles/DesignPatterns.dir/DesignPatterns.cpp.obj	40ad643c5bccb237
-950	1547	6910354308827033	DesignPatterns/DesignPatterns.exe	8aa8c5999d819849
-5	412	6910256862560037	DesignPatterns/Basic/CMakeFiles/DesignPatterns_Basic.dir/src/Basic.cpp.obj	df8e47d2ac99ac6a
-5	910	6910354306996619	DesignPatterns/Basic/CMakeFiles/DesignPatterns_Basic.dir/def/Basic.cpp.obj	6ef6d334e046c0e4
-1	166	6910385080614468	build.ninja	3bc20a651b6d4745
