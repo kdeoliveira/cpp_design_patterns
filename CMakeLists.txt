@@ -5,8 +5,6 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("DesignPatterns" VERSION 0.0.1)
 
-include(CPack)
-include(CTest)
 # Include user-defined functions/var
 include(definition.cmake)
 
@@ -18,13 +16,14 @@ add_subdirectory ("DesignPatterns")
 
 # === Testing ===
 # Inside build dir: ctest -C Debug -VV
+include(CTest)
 
 # Check if application runs
 add_test(NAME ShouldRun COMMAND ${PROJECT_NAME})
 
 # Checks if Debug is outputted
 do_test(${PROJECT_NAME} DebugMode "In debug*" )
-do_test(${PROJECT_NAME} OsVersion "[*Windows|*Linux]"> )
+do_test(${PROJECT_NAME} OsVersion "[*Windows | *Linux]")
 
 # === Runtime Verification ===
 include(CheckCXXSourceCompiles)
@@ -39,6 +38,13 @@ check_cxx_source_compiles("
 if(DEFINED IS_WINDOWS)
 	target_compile_definitions(${PROJECT_NAME} PRIVATE "CXX_WIN")
 endif()
+# === Packaging and Installers ===
+# Package: cpack -G [TGZ | ZIP] -C Debug
+include(InstallRequiredSystemLibraries) #Includes any required runtime libraries foor the current platform
+#set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
+set(CPACK_PACKAGE_VERSION_MAJOR "0")
+set(CPACK_PACKAGE_VERSION_MINOR "1")
+include(CPack)
 
 # For building:
 # 1) Generate cmake config files for build and install: cmake [dir of main CMakeLists.txt]; Note the files will be generated where the cmake command is executed
