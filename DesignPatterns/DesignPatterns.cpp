@@ -12,5 +12,9 @@ int main()
 #if ONDEBUG
 	cout << "In debug mode" << endl;
 #endif
+
+#if CXX_WIN
+	cout << "Windows" << endl;
+#endif
 	return 0;
 }

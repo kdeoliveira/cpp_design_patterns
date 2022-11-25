@@ -41,3 +41,10 @@ endforeach()
 # Intalls the main executable inside bin
 install(TARGETS ${PROJECT_NAME} CONFIGURATIONS Debug DESTINATION "bin/Debug")
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.hpp" CONFIGURATIONS Debug DESTINATION "include/Debug")
+
+# Generates install and build folder and sets the runtime variable to the respective paths
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build")
+set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install")
+install(DIRECTORY DESTINATION "${CMAKE_SOURCE_DIR}/install")
+#add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_SOURCE_DIR}/build")
+
