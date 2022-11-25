@@ -47,8 +47,8 @@ set(CPACK_PACKAGE_VERSION_MINOR "1")
 include(CPack)
 
 # For building:
-# 1) Generate cmake config files for build and install: cmake [dir of main CMakeLists.txt]; Note the files will be generated where the cmake command is executed
-# Note for older versions or makefiles builders use: cmake -B [build dir] -S [dir of main CMakeLists.txt] -DCMAKE_BUILD_TYPE=Debug -G Ninja
+# 1) Generate cmake config files for build and install: cmake -B [build dir] -S [dir of main CMakeLists.txt] -G [Ninja|Visual Studio 16 2019]; Note the files will be generated where the cmake command is executed
+# Note for windows-only: cmake [dir of main CMakeLists.txt]
 
 # 2) Create build: cmake --build [build dir] --config [Release/Debug]
 
