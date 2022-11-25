@@ -1,7 +1,7 @@
 ﻿# CMakeList.txt : Top-level CMake project file, do global configuration
 # and include sub-projects here.
 #
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.15)
 
 project ("DesignPatterns" VERSION 0.0.1)
 
@@ -48,6 +48,7 @@ include(CPack)
 
 # For building:
 # 1) Generate cmake config files for build and install: cmake [dir of main CMakeLists.txt]; Note the files will be generated where the cmake command is executed
+# Note for older versions or makefiles builders use: cmake -B [build dir] -S [dir of main CMakeLists.txt] -DCMAKE_BUILD_TYPE=Debug -G Ninja
 
 # 2) Create build: cmake --build [build dir] --config [Release/Debug]
 

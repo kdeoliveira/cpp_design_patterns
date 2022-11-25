@@ -1,7 +1,7 @@
 ﻿# CMakeList.txt : CMake project for DesignPatterns, include source and define
 # project specific logic here.
 #
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.15)
 
 # Add source to this project's executable.
 add_executable (${PROJECT_NAME} "${PROJECT_NAME}.cpp" "${PROJECT_NAME}.hpp")
@@ -16,7 +16,7 @@ target_compile_features(compiler_flags INTERFACE cxx_std_17)
 # Generator expression
 # $<x:y> x==true, then y
 # Note that cmake contains some specific behavior according ot the flag
-target_compile_definitions(compiler_flags INTERFACE $<$<CONFIG:Debug>:ONDEBUG=1>)
+target_compile_definitions(compiler_flags INTERFACE $<$<CONFIG:Debug>:ONDEBUG>)
 # add compiler options according to the compiler used
 # $<BUILD_INTERFACE>: If project is being built
 # $<INSTALL_INTERFACE>: If project is being installed

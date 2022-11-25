@@ -4,17 +4,16 @@
 #include "DesignPatterns.hpp"
 
 
-
-using namespace std;
-
 int main()
 {
 #if ONDEBUG
-	cout << "In debug mode" << endl;
+	std::cout << "In debug mode" << std::endl;
 #endif
 
 #if CXX_WIN
-	cout << "Windows" << endl;
+	std::cout << "Windows" << std::endl;
+#else
+	std::cout << "Linux" << std::endl;
 #endif
 	return 0;
 }

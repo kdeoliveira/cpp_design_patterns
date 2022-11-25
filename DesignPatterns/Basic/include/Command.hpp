@@ -23,7 +23,7 @@ namespace DesignPatterns {
 		//Implementation of each functionality
 		class JumpCommand : public Command {
 			virtual void execute() {
-				throw new std::exception("not implemented");
+				throw new std::exception();
 			}
 		};
 
