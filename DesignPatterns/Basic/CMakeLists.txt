@@ -21,8 +21,11 @@ target_link_libraries(${PROJECT_NAME} compiler_flags)
 # === INSTALLATION OF LIBRARY ===
 # Installs library into lib folder; Note that multiple targets may be provided in case install command is to be executed once for multiple lib
 # EXPORT: Generates cmake file with all target projects defined in install
-install(TARGETS ${PROJECT_NAME} compiler_flags EXPORT ${PROJECT_NAME}_Target CONFIGURATIONS Debug DESTINATION lib/Debug)
-install(FILES include/Command.hpp CONFIGURATIONS Debug DESTINATION include/Debug)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "./include/Command.hpp;./include/Common.hpp")
+
+install(TARGETS ${PROJECT_NAME} compiler_flags EXPORT ${PROJECT_NAME}_Target CONFIGURATIONS Debug DESTINATION lib/Debug PUBLIC_HEADER DESTINATION include/Debug)
+
 
 
 
