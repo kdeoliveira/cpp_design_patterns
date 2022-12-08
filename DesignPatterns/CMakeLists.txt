@@ -26,28 +26,27 @@ target_compile_options(compiler_flags INTERFACE "$<${gcc_cxx}:$<BUILD_INTERFACE:
 set(MAIN_PROJECT_NAME ${PROJECT_NAME})
 
 # Create list variable and appends library project names
-list(APPEND LIBS ${PROJECT_NAME}_Basic)
+list(APPEND LIBS compiler_flags ${PROJECT_NAME}_Basic)
 
 add_subdirectory("Basic")
 
 
 foreach(LIB IN LISTS LIBS)
-	target_link_libraries(${PROJECT_NAME} PUBLIC ${LIB} compiler_flags)
+	target_link_libraries(${PROJECT_NAME} PUBLIC ${LIB})
 endforeach()
 
 
 
-# === INSTALLATION ===
+# === INSTALLATION OF EXECUTABLE ===
 # Generates install and build folder and sets the runtime variable to the respective paths
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/build")
 set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install")
-install(DIRECTORY DESTINATION "${CMAKE_SOURCE_DIR}/install")
+install(DIRECTORY DESTINATION ${CMAKE_SOURCE_DIR}/install)
 #add_custom_command(TARGET ${PROJECT_NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_SOURCE_DIR}/build")
 
 # Intalls the main executable inside bin
 # EXPORT ${PROJECT_NAME}_Target: Generates cmake file that allows this library to be imported by another cmake via find_package()
-install(TARGETS ${PROJECT_NAME} CONFIGURATIONS Debug DESTINATION "bin/Debug")
-install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.hpp" CONFIGURATIONS Debug DESTINATION "include/Debug")
+install(TARGETS ${PROJECT_NAME} compiler_flags CONFIGURATIONS Debug DESTINATION bin/Debug)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.hpp CONFIGURATIONS Debug DESTINATION include/Debug)
 
 # Set the output directory for builds
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
