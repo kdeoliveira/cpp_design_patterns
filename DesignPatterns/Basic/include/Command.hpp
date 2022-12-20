@@ -2,7 +2,7 @@
 #include "Common.hpp"
 
 /*
-* Representation of functions as a callback that is fired when an action is taken place
+Representation of functions as a callback that is fired when an action is taken place by a handler. It consists of an Object-Oriented approach used to encapsulate the handlers and requests
 */
 
 namespace DesignPatterns {
