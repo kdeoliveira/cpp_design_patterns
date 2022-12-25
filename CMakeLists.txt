@@ -1,6 +1,8 @@
-﻿# CMakeList.txt : Top-level CMake project file, do global configuration
-# and include sub-projects here.
-#
+﻿# =====================================================
+# CMakeList.txt 
+# CMake for general projects
+# =====================================================
+
 cmake_minimum_required (VERSION 3.15)
 
 project ("DesignPatterns" VERSION 0.0.1)
@@ -9,10 +11,28 @@ project ("DesignPatterns" VERSION 0.0.1)
 include(definition.cmake)
 
 
+# == Compiler Definitions ==
+# Define warning and complementary flags for x86 adn arms compilers
+set(gcc_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>")
+set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
+
+# This library is used to define Compiler flags to be used across all build
+add_library(compiler_flags INTERFACE)
+target_compile_features(compiler_flags INTERFACE cxx_std_17)
+# Generator expression
+# $<x:y> x==true, then y
+# Note that cmake contains some specific behavior according ot the flag
+target_compile_definitions(compiler_flags INTERFACE $<$<CONFIG:Debug>:ONDEBUG>)
+# add compiler options according to the compiler used
+# $<BUILD_INTERFACE>: If project is being built
+# $<INSTALL_INTERFACE>: If project is being installed
+target_compile_options(compiler_flags INTERFACE "$<${gcc_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>" "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>")
+
+
+
 # Include sub-projects.
 add_subdirectory ("DesignPatterns")
-
-
+add_subdirectory ("Libraries")
 
 # === Testing ===
 # Inside build dir: ctest -C Debug -VV

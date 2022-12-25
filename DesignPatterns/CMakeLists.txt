@@ -1,40 +1,26 @@
-﻿# CMakeList.txt : CMake project for DesignPatterns, include source and define
-# project specific logic here.
-#
+﻿# =====================================================
+# CMakeList.txt 
+# CMake project for main executable: DesignPatterns
+# =====================================================
+
 cmake_minimum_required (VERSION 3.15)
 
 # Add source to this project's executable.
-add_executable (${PROJECT_NAME} "${PROJECT_NAME}.cpp" "${PROJECT_NAME}.hpp")
-
-# Define warning flags according to the compile used
-set(gcc_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>")
-set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
-
-# This library is used to define Compiler flags to be used across all build
-add_library(compiler_flags INTERFACE)
-target_compile_features(compiler_flags INTERFACE cxx_std_17)
-# Generator expression
-# $<x:y> x==true, then y
-# Note that cmake contains some specific behavior according ot the flag
-target_compile_definitions(compiler_flags INTERFACE $<$<CONFIG:Debug>:ONDEBUG>)
-# add compiler options according to the compiler used
-# $<BUILD_INTERFACE>: If project is being built
-# $<INSTALL_INTERFACE>: If project is being installed
-target_compile_options(compiler_flags INTERFACE "$<${gcc_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>" "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>")
+add_executable (${PROJECT_NAME} "${PROJECT_NAME}.cpp" "${PROJECT_NAME}.hpp" "Idiom/def/Idiom.cpp")
 
 
 set(MAIN_PROJECT_NAME ${PROJECT_NAME})
 
 # Create list variable and appends library project names
-list(APPEND LIBS compiler_flags ${PROJECT_NAME}_Basic)
+list(APPEND LIBS compiler_flags ${PROJECT_NAME}_Basic Idiom)
 
 add_subdirectory("Basic")
+add_subdirectory("Idiom")
 
 
 foreach(LIB IN LISTS LIBS)
 	target_link_libraries(${PROJECT_NAME} PUBLIC ${LIB})
 endforeach()
-
 
 
 # === INSTALLATION OF EXECUTABLE ===
@@ -46,7 +32,9 @@ install(DIRECTORY DESTINATION ${CMAKE_SOURCE_DIR}/install)
 # Intalls the main executable inside bin
 # EXPORT ${PROJECT_NAME}_Target: Generates cmake file that allows this library to be imported by another cmake via find_package()
 install(TARGETS ${PROJECT_NAME} compiler_flags CONFIGURATIONS Debug DESTINATION bin/Debug)
+
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.hpp CONFIGURATIONS Debug DESTINATION include/Debug)
+
 
 # Set the output directory for builds
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")

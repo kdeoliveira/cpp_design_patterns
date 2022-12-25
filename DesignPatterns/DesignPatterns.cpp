@@ -2,7 +2,7 @@
 //
 
 #include "DesignPatterns.hpp"
-
+#include "Crtp.hpp"
 
 int main()
 {
@@ -15,5 +15,17 @@ int main()
 #else
 	std::cout << "Linux" << std::endl;
 #endif
+
+	Idioms::MyFunctionality* myFunc = new Idioms::MyFunctionality(2);
+
+	std::cout << "CRTP:" << std::endl;
+	myFunc->scale(2);
+	std::cout << "scale by 2: " << myFunc->getValue() <<  std::endl;
+
+	myFunc->setToOpposite();
+	std::cout << "setToOpposite: " << myFunc->getValue() << std::endl;
+
+	myFunc->square();
+	std::cout << "square: " << myFunc->getValue() << std::endl;
 	return 0;
 }
