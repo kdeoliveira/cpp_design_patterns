@@ -14,6 +14,7 @@ namespace DesignPatterns {
 		};
 
 		// Abstract class containing the main command function
+		// Represents the request to be made
 		class Command {
 		public:
 			virtual ~Command() {}
