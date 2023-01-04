@@ -1,5 +1,11 @@
 ## DESIGN PATTERNS
 
+The Test Deisgn Patterns is added under the submodules
+When first cloning:
+`git submodule init`
+`git submodule udpate`
+Or, alternatively:
+`git clone --recursive-submodules <repo_url>`
 
 ### Shared Libs with Static lib
 In case a static library is linked in a outer shared library, ensure that static lib is set the static to be Position Independent.

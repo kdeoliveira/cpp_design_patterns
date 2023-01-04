@@ -1,0 +1,3 @@
+[submodule "DesignPatternsTest"]
+	path = DesignPatternsTest
+	url = git@github.com:kdeoliveira/DesignPatternsTest.git

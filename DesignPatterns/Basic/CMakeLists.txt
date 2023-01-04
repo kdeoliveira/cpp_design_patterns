@@ -15,7 +15,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "./include")
 
 # Add include folder as available directory to main project
 # INTERFACE: Make available to any project linked to this Project but not to this project itself
-target_include_directories(${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include/Debug>)
+target_include_directories(${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include/Debug/${PROJECT_NAME}>)
 
 # Link the compiler flags to this library
 target_link_libraries(${PROJECT_NAME} compiler_flags)
@@ -30,7 +30,7 @@ target_link_libraries(${PROJECT_NAME} compiler_flags)
 # Must contain all included header files
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "./include/Command.hpp;./include/Common.hpp")
 
-install(TARGETS ${PROJECT_NAME} compiler_flags EXPORT ${PROJECT_NAME}_Target CONFIGURATIONS Debug DESTINATION lib/Debug PUBLIC_HEADER DESTINATION include/Debug)
+install(TARGETS ${PROJECT_NAME} compiler_flags EXPORT ${PROJECT_NAME}_Target CONFIGURATIONS Debug DESTINATION lib/Debug/${PROJECT_NAME} PUBLIC_HEADER DESTINATION include/Debug/${PROJECT_NAME}/)
 
 
 # Install EXPORTED library cmake file

@@ -6,15 +6,16 @@
 cmake_minimum_required (VERSION 3.15)
 
 # Add source to this project's executable.
-add_executable (${PROJECT_NAME} "${PROJECT_NAME}.cpp" "${PROJECT_NAME}.hpp" "Idiom/def/Idiom.cpp")
+add_executable (${PROJECT_NAME} "${PROJECT_NAME}.cpp" "${PROJECT_NAME}.hpp" "Idiom/def/Idiom.cpp" "Creational/def/Creational.cpp")
 
 
 set(MAIN_PROJECT_NAME ${PROJECT_NAME})
 
 # Create list variable and appends library project names
-list(APPEND LIBS compiler_flags ${PROJECT_NAME}_Basic Idiom)
+list(APPEND LIBS compiler_flags ${PROJECT_NAME}_Basic Idiom ${PROJECT_NAME}_Creational)
 
 add_subdirectory("Basic")
+add_subdirectory("Creational")
 add_subdirectory("Idiom")
 
 
