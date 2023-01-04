@@ -1,7 +1,7 @@
-#include "..\include\lib.hpp"
+#include "lib.hpp"
 
 
-Lib::A::A(int _x) : x{ _x } {}
+Lib::A::A(int _x) : x(_x) {}
 
 int Lib::A::getX()
 {
